@@ -8,7 +8,7 @@ describe('wxbot-processer', ()=>{
 
   it('should return correctly app message', (done)=> {
 
-    wxbotProcesser.proccessAppMessage(JSON.parse((message)))
+    wxbotProcesser.processAppMessage(JSON.parse((message)))
       .then(data => {
         expect(data.body.user).to.equal("seven_dong");
         expect(data.body.link).to.equal("https://gold.xitu.io/entry/58c9223ba22b9d0064149de6");

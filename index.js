@@ -7,7 +7,7 @@ const {
   wxMessageParser
 } = require('./helper/wx-message');
 const {
-  sendMessgeToQueue
+  sendMessageToQueue
 } = require('./lib/message-sender');
 
 const wechatBot = Wechaty.instance();
@@ -30,20 +30,25 @@ wechatBot.on('login', user => console.log(`User ${user} logined`));
 
 wechatBot.on('message', message => {
   if (messageTypeMap[message.type()] == 'App') {
-      console.log(message.content());
-      wxMessageParser(message.content())
+    wxMessageParser(message.content())
       .then(
-        (messageObj) => console.log(`messageObj is ${messageObj}`) && wxbotProcesser.processAppMessage(messageObj)
+        (messageObj) => {
+          console.log('now in process')
+          return wxbotProcesser.processAppMessage(messageObj)
+        }
       )
       .then(
-        (queueMessage) => console.log(`queuemessage is ${queueMessage}`) && sendMessgeToQueue(queueMessage)
+        (queueMessage) => {
+          console.log('now in queue');
+          return sendMessageToQueue(queueMessage)
+        }
       )
       .then(
         () => message.say('Got it!') && console.log(`saved it to queue!`)
       ).catch(
-        () => message.say('Sorry I don\'t get it')
-      )
+      () => message.say('Sorry I don\'t get it')
+    )
   }
-})
+});
 
-wechatBot.init()
+wechatBot.init();
