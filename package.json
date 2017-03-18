@@ -19,6 +19,7 @@
     "botkit": "^0.5.1",
     "kue": "^0.11.5",
     "lodash": "^4.17.4",
+    "mongodb": "^2.2.25",
     "qrcode-terminal": "^0.11.0",
     "unescape": "^0.2.0",
     "utf8": "^2.1.2",

@@ -10,6 +10,8 @@ const {
   sendMessageToQueue
 } = require('./lib/message-sender');
 
+const { saveMessageToMongo } = require('./lib/db-saver');
+
 const wechatBot = Wechaty.instance();
 
 const messageTypeMap = {
@@ -39,8 +41,8 @@ wechatBot.on('message', message => {
       )
       .then(
         (queueMessage) => {
-          console.log('now in queue');
-          return sendMessageToQueue(queueMessage)
+          console.log('now in mongo');
+          return saveMessageToMongo(queueMessage)
         }
       )
       .then(
