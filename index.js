@@ -28,7 +28,7 @@ wechatBot.on('message', (message) => {
   if (messageTypeMap[message.type()] == 'App') {
     wxMessageParser(message.content())
       .then(messageObj => wxbotProcesser.processAppMessage(messageObj))
-      .then(queueMessage => saveMessageToMongo(queueMessage))
+      .then(queueMessage => saveMessageToMongo(queueMessage.body))
       .then(() => message.say('Got it!'))
       .catch(() => message.say('Sorry I don\'t get it')
     );
