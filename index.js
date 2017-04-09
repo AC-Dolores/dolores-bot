@@ -1,7 +1,7 @@
 const { Wechaty } = require('wechaty');
 const QrcodeTerminal = require('qrcode-terminal');
 const wxbotProcesser = require('./lib/wxbot-proceser');
-const {wxMessageParser } = require('./helper/wx-message');
+const { wxMessageParser } = require('./helper/wx-message');
 
 
 const { saveMessageToMongo } = require('./lib/db-saver');
